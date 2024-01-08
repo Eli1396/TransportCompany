@@ -1,6 +1,7 @@
 package org.example.entity;
 
 import jakarta.persistence.*;
+import org.example.entity.enumeration.Unit;
 
 import java.util.Set;
 
@@ -13,8 +14,9 @@ public class Vehicle {
     private long id;
     @Column(name = "type")
     private String type;
+    @Enumerated(EnumType.STRING)
     @Column(name = "capacity_unit")
-    private String capacityUnit;
+    private Unit unit;
     @Column(name = "capacity")
     private float capacity;
 
@@ -29,16 +31,17 @@ public class Vehicle {
     public Vehicle() {
     }
 
-    public Vehicle( String type, String capacityUnit, float capacity) {
+    public Vehicle(long id, String type, Unit unit, float capacity) {
+        this.id = id;
         this.type = type;
-        this.capacityUnit = capacityUnit;
+        this.unit = unit;
         this.capacity = capacity;
     }
 
-    public Vehicle(long id, String type, String capacityUnit, float capacity, Company company, Set<NewOrder> orders) {
+    public Vehicle(long id, String type, Unit unit, float capacity, Company company, Set<NewOrder> orders) {
         this.id = id;
         this.type = type;
-        this.capacityUnit = capacityUnit;
+        this.unit = unit;
         this.capacity = capacity;
         this.company = company;
         this.orders = orders;
@@ -60,12 +63,12 @@ public class Vehicle {
         this.type = type;
     }
 
-    public String getCapacityUnit() {
-        return capacityUnit;
+    public Unit getUnit() {
+        return unit;
     }
 
-    public void setCapacityUnit(String capacityUnit) {
-        this.capacityUnit = capacityUnit;
+    public void setUnit(Unit unit) {
+        this.unit = unit;
     }
 
     public float getCapacity() {
@@ -97,7 +100,7 @@ public class Vehicle {
         return "Vehicle{" +
                 "id=" + id +
                 ", type='" + type + '\'' +
-                ", capacityUnit='" + capacityUnit + '\'' +
+                ", capacityUnit='" + unit + '\'' +
                 ", capacity=" + capacity +
                 '}';
     }

@@ -12,6 +12,7 @@ import java.util.Set;
 
 public class CompanyDao {
 
+
     //Company by name
     public static Company getCompanyByName(String name) {
         Company company;

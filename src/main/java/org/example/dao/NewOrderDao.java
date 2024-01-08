@@ -1,6 +1,7 @@
 package org.example.dao;
 
 import org.example.configuration.SessionFactoryUtil;
+import org.example.entity.Company;
 import org.example.entity.NewOrder;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -8,6 +9,21 @@ import org.hibernate.Transaction;
 import java.util.List;
 
 public class NewOrderDao {
+
+    //order by destination
+    public static List<NewOrder> getNewOrdersByDestination(String arrivalPoint){
+        List<NewOrder> newOrders;
+        try (Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
+            Transaction transaction = session.beginTransaction();
+            newOrders = session.createQuery("Select c From org.example.entity.NewOrder n "+
+                            "WHERE arrivalPoint = :arrivalPoint", NewOrder.class)
+                    .setParameter("arrivalPoint",arrivalPoint)
+                    .getResultList();
+            transaction.commit();
+        }
+        return newOrders;
+    }
+
     //Crud
     public static void createNewOrder(NewOrder newOrder) {
         try (Session session = SessionFactoryUtil.getSessionFactory().openSession()) {

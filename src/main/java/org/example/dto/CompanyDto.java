@@ -2,7 +2,6 @@ package org.example.dto;
 
 public class CompanyDto {
     private long id;
-
     private String name;
 
     public CompanyDto(long id, String name) {

@@ -14,10 +14,11 @@ public class Main {
         SessionFactoryUtil.getSessionFactory().openSession();
         Company company = new Company("travelSpeed");
        // Employee employee = new Employee("Asen", "Dimov", "2500");
-       // Vehicle vehicle = new Vehicle("bus", "PEOPLE", 12);
+        Vehicle vehicle = new Vehicle();
         CompanyDao.createCompany(company);
         //EmployeeDao.createEmpoyee(employee);
-       // VehicleDao.createVehicle(vehicle);
+        vehicle.setId(2);
+        VehicleDao.deleteVehicle(vehicle);
         System.out.println("getCompaniesByName:");
         CompanyDao.getCompaniesByName("SAP").stream().forEach(System.out::println);
     }
