@@ -1,6 +1,8 @@
 package org.example.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
+
 
 import java.util.Set;
 
@@ -11,7 +13,10 @@ public class Company {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private long id;
-    @Column(name="name")
+    @NotBlank(message = "Company name cannot be blank!")
+    @Size(max = 20, message = "Company name has to be with up to 20 characters!")
+    @Pattern(regexp = "^([A-Z]).*", message = "Company name has to start with capital letter!")
+    @Column(name = "name", nullable = false)
     private String name;
 
     //Relationships

@@ -29,7 +29,7 @@ public class VehicleDao {
         List<Vehicle> vehicles;
         try (Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
-            vehicles = session.createQuery("Select c From org.example.entity.Company c", Vehicle.class)
+            vehicles = session.createQuery("Select c From org.example.entity.Vehicle c", Vehicle.class)
                     .getResultList();
             transaction.commit();
         }

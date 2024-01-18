@@ -1,6 +1,10 @@
 package org.example.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
+import org.example.dao.CompanyDao;
 
 import java.util.Set;
 
@@ -11,9 +15,15 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
     private long id;
-    @Column(name="name")
+    @NotBlank(message = "Employee name cannot be blank!")
+    @Size(max = 20, message = "Employee name has to be with up to 20 characters!")
+    @Pattern(regexp = "^([A-Z]).*", message = "Employee name has to start with capital letter!")
+    @Column(name="name",nullable = false)
     private String name;
-    @Column(name="family_name")
+    @NotBlank(message = "Employee family name cannot be blank!")
+    @Size(max = 20, message = "Employee family name has to be with up to 20 characters!")
+    @Pattern(regexp = "^([A-Z]).*", message = "Employee family name has to start with capital letter!")
+    @Column(name="family_name",nullable = false)
     private String familyName;
     @Column(name="salary")
     private String salary;
@@ -45,14 +55,27 @@ public class Employee {
         this.salary = salary;
     }
 
-    public Employee(long id, String name, String familyName, String salary, Company company, Set<NewOrder> orders, Set<Skill> skills) {
-        this.id = id;
+    public Employee( String name, String familyName, String salary, Company company, Set<NewOrder> orders, Set<Skill> skills) {
         this.name = name;
         this.familyName = familyName;
         this.salary = salary;
         this.company = company;
         this.orders = orders;
         this.skills = skills;
+    }
+
+    public Employee(String name, String familyName, String salary, Company company) {
+        this.name = name;
+        this.familyName = familyName;
+        this.salary = salary;
+        this.company = company;
+    }
+    public Employee(String name, String familyName, String salary, long company1) {
+        Company company = CompanyDao.getCompanyById(company1);
+        this.name = name;
+        this.familyName = familyName;
+        this.salary = salary;
+        this.company = company;
     }
 
     public long getId() {

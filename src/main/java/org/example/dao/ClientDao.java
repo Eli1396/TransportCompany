@@ -30,7 +30,7 @@ public class ClientDao {
         List<Client> clients;
         try (Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
-            clients = session.createQuery("Select c From org.example.entity.Company c", Client.class)
+            clients = session.createQuery("Select c From org.example.entity.Client c", Client.class)
                     .getResultList();
             transaction.commit();
         }

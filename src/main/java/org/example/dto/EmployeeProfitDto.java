@@ -1,24 +1,14 @@
 package org.example.dto;
 
-
-public class EmployeeDto {
-
-    private long id;
+public class EmployeeProfitDto {
     private String name;
     private String familyName;
+    private double price;
 
-    public EmployeeDto(long id, String name, String familyName) {
-        this.id = id;
+    public EmployeeProfitDto(String name, String familyName, double price) {
         this.name = name;
         this.familyName = familyName;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
+        this.price = price;
     }
 
     public String getName() {
@@ -37,12 +27,20 @@ public class EmployeeDto {
         this.familyName = familyName;
     }
 
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
     @Override
     public String toString() {
-        return "EmployeeDto{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
+        return "EmployeeProfitDto{" +
+                "name='" + name + '\'' +
                 ", familyName='" + familyName + '\'' +
+                ", price=" + price +
                 '}';
     }
 }

@@ -1,6 +1,9 @@
 package org.example.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 
 import java.util.Set;
 
@@ -11,9 +14,15 @@ public class Client {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
     private long id;
-    @Column(name="name")
+    @NotBlank(message = "Client name cannot be blank!")
+    @Size(max = 20, message = "Client name has to be with up to 20 characters!")
+    @Pattern(regexp = "^([A-Z]).*", message = "Client name has to start with capital letter!")
+    @Column(name = "name", nullable = false)
     private String name;
-    @Column(name="family_name")
+    @NotBlank(message = "Client family name cannot be blank!")
+    @Size(max = 20, message = "Client family name has to be with up to 20 characters!")
+    @Pattern(regexp = "^([A-Z]).*", message = "Client family name has to start with capital letter!")
+    @Column(name="family_name",nullable = false)
     private String familyName;
 
     //Relationships
@@ -34,8 +43,7 @@ public class Client {
         this.familyName = familyName;
     }
 
-    public Client(long id, String name, String familyName, Set<Receipt> receipts, Set<Company> companies) {
-        this.id = id;
+    public Client( String name, String familyName, Set<Receipt> receipts, Set<Company> companies) {
         this.name = name;
         this.familyName = familyName;
         this.receipts = receipts;

@@ -11,7 +11,7 @@ public class Skill {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
     private long id;
-    @Column(name="type")
+    @Column(name="type", nullable = false)
     private String type;
 
     //Relationships
@@ -26,8 +26,7 @@ public class Skill {
         this.type = type;
     }
 
-    public Skill(long id, String type, Set<Employee> employees) {
-        this.id = id;
+    public Skill( String type, Set<Employee> employees) {
         this.type = type;
         this.employees = employees;
     }
@@ -54,5 +53,13 @@ public class Skill {
 
     public void setEmployees(Set<Employee> employees) {
         this.employees = employees;
+    }
+
+    @Override
+    public String toString() {
+        return "Skill{" +
+                "id=" + id +
+                ", type='" + type + '\'' +
+                '}';
     }
 }

@@ -1,2 +1,5 @@
-package org.example.entity;public enum PayloadType {
+package org.example.entity;
+
+public enum PayloadType {
+    HUMAN,CARGO
 }
