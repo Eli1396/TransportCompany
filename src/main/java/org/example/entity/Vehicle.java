@@ -19,7 +19,7 @@ public class Vehicle {
     @Column(name = "vehicle_type", nullable = false)
     private String vehicleType;
     @Enumerated(EnumType.STRING)
-    @Column(name = "payload_type")
+    @Column(name = "payload_type", nullable = false)
     private PayloadType payloadType;
     @Column(name = "capacity", nullable = false)
     private float capacity;

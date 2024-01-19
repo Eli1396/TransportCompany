@@ -15,6 +15,7 @@ public class Receipt {
 
     //Relationships
 
+
     @ManyToOne(fetch = FetchType.LAZY)
     private NewOrder newOrder;
 

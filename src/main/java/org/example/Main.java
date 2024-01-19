@@ -2,13 +2,9 @@ package org.example;
 
 import org.example.configuration.SessionFactoryUtil;
 import org.example.dao.*;
-import org.example.dto.CompanyDto;
-import org.example.dto.CompanyProfitDto;
 import org.example.entity.*;
 
 import java.time.LocalDate;
-import java.util.List;
-import java.util.stream.Stream;
 
 import static org.example.entity.PayloadType.CARGO;
 import static org.example.entity.PayloadType.HUMAN;
@@ -17,7 +13,7 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Hello world!");
         SessionFactoryUtil.getSessionFactory().openSession();
-/*
+
         Skill skill1 = new Skill( "C");
         Skill skill2 = new Skill( "DE");
         Skill skill3 = new Skill( "Every");
@@ -93,7 +89,7 @@ public class Main {
 //        ReceiptDao.createReceipt(receipt3);
 
 
-        Company company = new Company("TravelFar");
+        Company company = new Company("XravelFar");
         company.setId(4);
         CompanyDao.updateCompany(company);
         company.setId(3);
@@ -111,7 +107,7 @@ public class Main {
         vehicle.setId(4);
         //VehicleDao.deleteVehicle(vehicle);
 
-        Employee employee = new Employee("Asen", "Dimov", "2500");
+        Employee employee = new Employee("Asen", "Dimov", "2500",1);
         employee.setId(1);
         EmployeeDao.updateEmployee(employee);
         employee.setId(4);
@@ -205,43 +201,12 @@ public class Main {
         EmployeeDao.getEmployeeProfit(1)
                 .stream()
                 .forEach(System.out::println);
-*/
+
+//        NewOrder newOrder5 = new NewOrder("Stara Zagora", "Pleven",70,
+//                LocalDate.of(2024,02,10), LocalDate.of(2024,02,12),
+//                "Category D","Shipments",360 ,1,1,1);
 //
-        //NewOrder newOrder = new NewOrder("Varna", "Sofia",40,
-        //        LocalDate.of(2024,01,10), LocalDate.of(2024,01,12),
-         //       "Category D","Furniture",250, employee, company, vehicle );
-        //NewOrderDao.createNewOrder(newOrder);
-        //Receipt receipt = new Receipt(1,1);
-        //ReceiptDao.createReceipt(receipt);
-        //List<CompanyProfitDto> capital=CompanyDao.getCompanyProfitDto(1);
-       // System.out.println(capital);
-        //Double capital = CompanyDao.getCompanyProfit(1);
-       // System.out.println(capital);
-       // NewOrderDao.getNewOrderById(1);
-        //System.out.println();
-       // CompanyDao.getCompanyProfitDto(1).stream().forEach(System.out::println);
-//        Double capital = CompanyDao.getCompanyProfitBetweeen(1,LocalDate.of(2024,01,10), LocalDate.of(2024,01,12));
-//         System.out.println(capital);
-//        company = CompanyDao.getCompanyById(1);
-//        System.out.println(company);
-
-
-//        //Get employee's skills using DTO Projection
-//        System.out.println("Employee has the following skills: ");
-//        EmployeeDao.getEmployeeSkillsDto(1)
-//                .stream()
-//                .forEach(System.out::println);
-//        //Get all employees with skill using DTO Projection
-//
-//        System.out.println("Employees, that have the following skill: ");
-//        SkillDao.getEmployeesBySkillDto("D")
-//                .stream()
-//                .forEach(System.out::println);
-//        System.out.println("list: ");
-//       // System.out.println(CompanyDao.getCompanyByProfit(1).toString());
-//        CompanyDao.getCompanyByProfit(1)
-//                .stream()
-//               .forEach(System.out::println);;
-
+//        PrintFile printFile = new PrintFile();
+//        printFile.printNewOrderToPdf(newOrder5);
     }
 }
